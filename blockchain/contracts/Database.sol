@@ -8,7 +8,7 @@ contract DAOEnrollment {
         string name;
         string regno;
         string email;
-        uint256 phone;
+        string phone;
         string message;
         uint256 enrollmentTime;
         bool isActive;
@@ -73,9 +73,8 @@ contract DAOEnrollment {
         emit MemberUpdated(msg.sender, _name);
     }
 
-    function removeMember(address _address) public whenNotPaused {
+    function removeMember(address _address) public whenNotPaused onlyAdmin{
         require(members[msg.sender].isActive, "Not enrolled");
-        require(isAdmin[msg.sender], "Only admins can remove members");
         for (uint256 i = 0; i < memberList.length; i++) {
             if (memberList[i] == _address) {
                 for (uint256 j = i; j < memberList.length - 1; j++) {
@@ -85,7 +84,7 @@ contract DAOEnrollment {
                 break;
             }
         }
-        
+
         emit MemberDeleted(_address);
     }
 
@@ -123,6 +122,18 @@ contract DAOEnrollment {
 
     function getAllMembers() public view returns (address[] memory) {
         return memberList;
+    }
+
+    function getActiveMembers() public view returns (address[] memory) {
+        address[] memory activeMembers;
+        uint256 count = 0;
+        for (uint256 i = 0; i < memberList.length; i++) {
+            if (members[memberList[i]].isActive) {
+                activeMembers[count] = memberList[i];
+                count++;
+            }
+        }
+        return activeMembers;
     }
 
     function getMemberCount() public view returns (uint256) {

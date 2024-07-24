@@ -2,6 +2,7 @@
   "name": "dao-enrollment-contract",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -10,7 +11,7 @@
     "compile": "hardhat compile",
     "deploy": "hardhat run blockchain/scripts/deploy.ts",
     "test": "hardhat test",
-    "compile-abi": "hardhat compile-and-extract-abi"
+    "compile-abi": "hardhat compile-and-extract-abi --show-stack-traces"
   },
   "dependencies": {
     "ethers": "5.7.2",
