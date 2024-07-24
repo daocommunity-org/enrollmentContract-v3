@@ -34,3 +34,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Hardhat files
+blockchain/artifacts
+blockchain/cache
+
+# Misc
+node_modules
+*.log
+.env
