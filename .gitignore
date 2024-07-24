@@ -36,7 +36,7 @@ yarn-error.log*
 next-env.d.ts
 
 # Hardhat files
-blockchain/artifacts
+blockchain/artifacts/build-info
 blockchain/cache
 
 # Misc
