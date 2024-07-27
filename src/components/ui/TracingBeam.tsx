@@ -6,6 +6,7 @@ import {
   useScroll,
   useVelocity,
   useSpring,
+  px,
 } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -27,7 +28,7 @@ export const TracingBeam = ({
 
   useEffect(() => {
     if (contentRef.current) {
-      setSvgHeight(contentRef.current.offsetHeight);
+      setSvgHeight(contentRef.current.offsetHeight * 1.01);
     }
   }, []);
 
@@ -51,39 +52,13 @@ export const TracingBeam = ({
       ref={ref}
       className={cn("relative  max-w-screen mx-auto h-full", className)}
     >
-      <div className="absolute  pl-2 sm:pl-4 pt-16  top-3">
-        <motion.div
-          transition={{
-            duration: 0.2,
-            delay: 0.5,
-          }}
-          animate={{
-            boxShadow:
-              scrollYProgress.get() > 0
-                ? "none"
-                : "rgba(0, 0, 0, 0.24) 0px 3px 8px",
-          }}
-          className="ml-[27px] h-4 w-4 rounded-full border border-netural-200 shadow-sm flex items-center justify-center"
-        >
-          <motion.div
-            transition={{
-              duration: 0.2,
-              delay: 0.5,
-            }}
-            animate={{
-              backgroundColor:
-                scrollYProgress.get() > 0 ? "white" : "var(--emerald-500)",
-              borderColor:
-                scrollYProgress.get() > 0 ? "white" : "var(--emerald-600)",
-            }}
-            className="h-2 w-2  rounded-full border border-neutral-300 bg-white"
-          />
-        </motion.div>
+      <div className="absolute  l-[0px] pl-[3px] sm:pl-[3px] pt-16  top-3">
+        
         <svg
-          viewBox={`0 0 20 ${svgHeight}`}
+          viewBox={`0 10 20 ${svgHeight}`}
           width="20"
           height={svgHeight} // Set the SVG height
-          className=" ml-4 block"
+          className=" ml-[0px] block"
           aria-hidden="true"
         >
           <motion.path

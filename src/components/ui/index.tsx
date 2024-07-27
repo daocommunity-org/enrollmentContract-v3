@@ -8,6 +8,7 @@ import { Button } from "./MovingBorder";
 import { Checkbox } from "./checkbox"
 import { Toaster, toast } from "sonner";
 import {TextRevealCard, TextRevealCardDescription, TextRevealCardTitle,} from "./TextRevealCard";
+import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetOverlay, SheetTitle, SheetTrigger } from "./sheet";
 
 export { Accordion,  
         AccordionContent,    
@@ -37,4 +38,14 @@ export { Accordion,
         TextRevealCard, 
         TextRevealCardDescription, 
         TextRevealCardTitle,
+        Sheet,
+        SheetClose,
+        SheetContent,
+        SheetDescription,
+        SheetFooter,
+        SheetHeader,
+        SheetOverlay,
+        SheetTitle,
+        SheetTrigger
+        
     }

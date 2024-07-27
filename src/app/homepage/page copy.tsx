@@ -9,13 +9,11 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger,
     Checkbox,
     toast,
     TextRevealCard, TextRevealCardDescription, TextRevealCardTitle,
-    Sheet, SheetClose, SheetContent, SheetDescription, SheetTrigger, SheetFooter, SheetHeader, SheetTitle,
 } from "@/components/ui";
 import { motion } from "framer-motion"
 import { useEffect, useState } from "react";
 
 import SmoothScroll from '@/utils/smoothScroll';
-import NetworkDetails from "@/components/NetworkDetails";
 
 export default function LandingPage() {
     const [term1,setTerm1]=useState(false)
@@ -33,7 +31,6 @@ export default function LandingPage() {
     },[])
 
     return (
-        <>
       <div className="min-h-screen flex flex-col gap-32 items-center" >
         <div className="flex h-screen flex-col gap-10 items-center justify-center">
 
@@ -42,7 +39,7 @@ export default function LandingPage() {
                 className="w-[70vw] md:w-[60vw] lg:w-[32rem] flex flex-col items-center gap-8"
                 initial={{ y: 150, opacity: 0 }}
                 animate={{ y: 20, opacity: 1 }}
-                transition={{ ease: "easeInOut", duration: 1 }}
+                transition={{ ease: "easeInOut", duration: 4 }}
             >
                 <h1 className="md:hidden font-lexend block font-bold text-7xl">Hey There! 👋</h1>
                 <div className="md:block hidden ">
@@ -53,7 +50,7 @@ export default function LandingPage() {
                     </TextRevealCard>
                 </div> 
 
-                <div className="flex text-l lg:text-2xl flex-col gap-4">
+                <div className="flex text-2xl flex-col gap-4">
                     <p>
                         Thanks for showing interest in the DAO Community. 
                     </p>
@@ -67,7 +64,7 @@ export default function LandingPage() {
             <motion.div
                 initial={{ y: 150, opacity: 0 }}
                 animate={{ y: 20, opacity: 1 }}
-                transition={{ ease: "easeInOut", duration: 1 }}
+                transition={{ ease: "easeInOut", duration: 4 }}
             >
 
                 {/* Accordion */}
@@ -75,7 +72,7 @@ export default function LandingPage() {
                     <AccordionItem value="item-1">
                         <AccordionTrigger>What we Expect in you</AccordionTrigger>
                         <AccordionContent>
-                            <div className="flex flex-col gap-1  ">
+                            <div className="flex flex-col gap-4  ">
                                 <div>🔎 Googling <br/></div>
                                 <div>📚 Willingness to learn<br/></div>
                                 <div>🧩 Basic idea of Chrome Extensions and Cryptography (Optional)<br/></div>
@@ -145,12 +142,20 @@ export default function LandingPage() {
 
 
         </div>  
-        <div className="pl-[40px] w-[60vw] md:w-[60vw] lg:w-[40vw] justify-center items-center flex flex-col gap-16">
+        {alertVisible && OnBoardingVisible && <Objective objectiveHovered={objectiveHovered} setObjectiveHovered={setObjectiveHovered} detailedTutorialHovered={detailedTutorialHovered} setDetailedTutorialHovered={setDetailedTutorialHovered} finallyHovered={finallyHovered} setFinallyHovered={setFinallyHovered} />}
+        {/* <Objective objectiveHovered={objectiveHovered} setObjectiveHovered={setObjectiveHovered}/> */}
+      </div>
+    );
+  }
+
+function Objective({objectiveHovered, setObjectiveHovered, detailedTutorialHovered, setDetailedTutorialHovered, finallyHovered, setFinallyHovered}:{objectiveHovered:boolean, setObjectiveHovered:any, detailedTutorialHovered:boolean,setDetailedTutorialHovered:any,  finallyHovered:boolean, setFinallyHovered:any}){
+    return(
+        <div className="w-[100vw] md:w-[60vw] lg:w-[40vw] justify-center items-center flex flex-col gap-16">
             <div className="flex flex-col gap-16">
                 <h1 className="w-[70vw] md:w-[60vw] lg:w-[30vw] text-2xl">Now that you know what it takes, lets get you onboarded!</h1>
 
                 {/* Objective Section */}
-                <div className="flex flex-col items-baseline gap-4]">
+                <div className="flex flex-col items-baseline w-[80%] gap-4">
                     {/* Heading and tooltip */}
                     <div className="flex gap-2 items-baseline">
                         {objectiveHovered && <span className={`text-3xl font-extrabold`}>{"->"}</span>}
@@ -171,8 +176,8 @@ export default function LandingPage() {
 
 
                     <div className="text-sm">
-                        <ul className="flex flex-col gap-8 sm:text-md lg:text-lg">
-                            <li className="flex items-center gap-2 pt-2">
+                        <ul className="flex flex-col gap-8 text-md">
+                            <li className="flex items-center gap-2">
                                 <p>call the function </p>
                                 <CodeSnippet text1="enrollMember()" />
                             </li>
@@ -182,7 +187,7 @@ export default function LandingPage() {
                                 {"{"} <br/>    string_name,<br />    string_uid,<br />    string_officialEmail,<br />    string_phoneNumber,<br />    string_msg <br/> {"}"}
                                 </pre>
                             </li>
-                            <li className="flex flex-col gap-2 lg:text-xl sm:text-xs">
+                            <li className="flex flex-col gap-2 ">
                                 <p>from the contract</p>
                                 <CodeSnippet text1="0x23b72C97e7cD3fF54e3f35A20E99FA9Bc896D431" />
                             </li>
@@ -191,19 +196,15 @@ export default function LandingPage() {
                 </div>
 
                 {/* Network Details Link Preview */}
-                {/* <h2 className="text-xl sm:text-3xl text-center text-gray-500 ">
+                <h2 className="text-xl sm:text-3xl text-center text-gray-500 ">
                     Click here for {" "}
                     <LinkPreview url="https://framer.com/motion" className="text-white underline">
                         Network Details
                     </LinkPreview>
-                </h2> */}
-                <h2 className="text-xl sm:text-3xl text-center text-gray-500 ">
-                    Click here for {" "}
-                    <NetworkDetails sheetWidth="400px"/>
                 </h2>
 
                 {/* Detailed Tutorial Section */}
-                <div className="flex flex-col items-baseline gap-4 w-[95%]">
+                <div className="flex flex-col items-baseline w-[80%] gap-4">
                     {/* Heading */}
                     <div className="flex gap-2 items-baseline">
                         <h2 className="text-xl sm:text-3xl font-bold"> {"->"} Detailed Tutorial</h2>
@@ -301,11 +302,6 @@ export default function LandingPage() {
 
             </div>
         </div>
-        {/* {alertVisible && OnBoardingVisible && <Objective objectiveHovered={objectiveHovered} setObjectiveHovered={setObjectiveHovered} detailedTutorialHovered={detailedTutorialHovered} setDetailedTutorialHovered={setDetailedTutorialHovered} finallyHovered={finallyHovered} setFinallyHovered={setFinallyHovered} />} */}
-        {/* <Objective objectiveHovered={objectiveHovered} setObjectiveHovered={setObjectiveHovered}/> */}
-      </div>
-        
-        </>
     )
 }
   

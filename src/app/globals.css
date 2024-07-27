@@ -68,6 +68,8 @@
   }
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+
 body{
   background-image: url("/bg-texture.png");
   background-size: cover; 
@@ -114,4 +116,13 @@ html {
 
 ::-webkit-scrollbar-corner {
     background: none;
+}
+
+.scroll-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  will-change: transform;
 }

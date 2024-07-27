@@ -36,7 +36,7 @@ export const TextRevealCard = ({
     const { clientX } = event;
     if (cardRef.current) {
       const relativeX = clientX - left;
-      setWidthPercentage((relativeX / localWidth) * 110);
+      setWidthPercentage((relativeX / localWidth) * 100);
     }
   }
 
@@ -52,11 +52,11 @@ export const TextRevealCard = ({
     const clientX = event.touches[0]!.clientX;
     if (cardRef.current) {
       const relativeX = clientX - left;
-      setWidthPercentage((relativeX / localWidth) * 150);
+      setWidthPercentage((relativeX / localWidth) * 100);
     }
   }
 
-  const rotateDeg = (widthPercentage - 50) * 0.2;
+  const rotateDeg = (widthPercentage - 50) * 0.1;
   return (
     <div
       onMouseEnter={mouseEnterHandler}
@@ -67,7 +67,7 @@ export const TextRevealCard = ({
       onTouchMove={touchMoveHandler}
       ref={cardRef}
       className={cn(
-        "bg-transparent border border-white/[0.08] rounded-lg relative overflow-hidden",
+        "bg-transparent border border-white/[0.08] w-[50rem] rounded-lg pl-[9rem] relative overflow-hidden",
         className
       )}
     >
@@ -111,7 +111,7 @@ export const TextRevealCard = ({
         ></motion.div>
 
         <div className=" overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,white,transparent)]">
-          <p className="w-[40vw] text-center justify-center align-center flex items-center text-base sm:text-[3rem] py-10 font-bold bg-clip-text text-transparent bg-[#323238]">
+          <p className="text-base sm:text-[3rem] py-10 font-bold bg-clip-text text-transparent bg-[#323238]">
             {text}
           </p>
           <MemoizedStars />
