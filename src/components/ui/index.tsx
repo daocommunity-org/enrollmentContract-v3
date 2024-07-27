@@ -5,7 +5,9 @@ import {TracingBeam} from "./TracingBeam"
 import {  Tooltip,  TooltipContent,  TooltipProvider,  TooltipTrigger,} from "./tooltip"
 import { LinkPreview } from "./LinkPreview";
 import { Button } from "./MovingBorder";
-  
+import { Checkbox } from "./checkbox"
+import { Toaster, toast } from "sonner";
+import {TextRevealCard, TextRevealCardDescription, TextRevealCardTitle,} from "./TextRevealCard";
 
 export { Accordion,  
         AccordionContent,    
@@ -28,5 +30,11 @@ export { Accordion,
         TooltipProvider,  
         TooltipTrigger,
         LinkPreview,
-        Button
+        Button,
+        Checkbox,
+        Toaster,
+        toast,
+        TextRevealCard, 
+        TextRevealCardDescription, 
+        TextRevealCardTitle,
     }
