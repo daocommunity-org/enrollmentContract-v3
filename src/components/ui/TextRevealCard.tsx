@@ -36,7 +36,7 @@ export const TextRevealCard = ({
     const { clientX } = event;
     if (cardRef.current) {
       const relativeX = clientX - left;
-      setWidthPercentage((relativeX / localWidth) * 110);
+      setWidthPercentage((relativeX / localWidth) * 150);
     }
   }
 
@@ -52,7 +52,7 @@ export const TextRevealCard = ({
     const clientX = event.touches[0]!.clientX;
     if (cardRef.current) {
       const relativeX = clientX - left;
-      setWidthPercentage((relativeX / localWidth) * 150);
+      setWidthPercentage((relativeX / localWidth) * 100);
     }
   }
 
@@ -106,12 +106,12 @@ export const TextRevealCard = ({
             rotate: `${rotateDeg}deg`,
             opacity: widthPercentage > 0 ? 1 : 0,
           }}
-          transition={isMouseOver ? { duration: 0 } : { duration: 0.4 }}
+          transition={isMouseOver ? { duration: 0 } : { duration: 0.9 }}
           className="h-40 w-[10px] bg-gradient-to-b from-transparent via-neutral-800 to-transparent absolute z-50 will-change-transform"
         ></motion.div>
 
         <div className=" overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,white,transparent)]">
-          <p className="w-[40vw] text-center justify-center align-center flex items-center text-base sm:text-[3rem] py-10 font-bold bg-clip-text text-transparent bg-[#323238]">
+          <p className="text-base sm:text-[3rem] py-10 font-bold bg-clip-text text-transparent bg-[#323238]">
             {text}
           </p>
           <MemoizedStars />

@@ -80,7 +80,7 @@ const NetworkDetails: React.FC = () => {
       <SheetTrigger className="text-white underline cursor-pointer hover:text-blue-300 transition-colors">
         Network Details
       </SheetTrigger>
-      <SheetContent className="bg-black text-white w-[50vw]">
+      <SheetContent className="bg-black text-white w-full sm:w-[80vw] md:w-[60vw] lg:w-[50vw] overflow-y-auto">
         <SheetHeader>
           <SheetTitle className="text-white text-2xl font-bold">Network Details</SheetTitle>
         </SheetHeader>

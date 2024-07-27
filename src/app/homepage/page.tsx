@@ -199,7 +199,7 @@ export default function LandingPage() {
                 </h2> */}
                 <h2 className="text-xl sm:text-3xl text-center text-gray-500 ">
                     Click here for {" "}
-                    <NetworkDetails sheetWidth="400px"/>
+                    <NetworkDetails />
                 </h2>
 
                 {/* Detailed Tutorial Section */}
