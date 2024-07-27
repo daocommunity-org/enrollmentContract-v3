@@ -40,7 +40,7 @@ export default function LandingPage() {
                 animate={{ y: 20, opacity: 1 }}
                 transition={{ ease: "easeInOut", duration: 4 }}
             >
-                <h1 className="md:hidden block font-bold text-7xl">Hey There! 👋</h1>
+                <h1 className="md:hidden font-lexend block font-bold text-7xl">Hey There! 👋</h1>
                 <div className="md:block hidden ">
                     <TextRevealCard
                         text="Hey There! 👋"

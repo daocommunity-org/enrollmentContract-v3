@@ -15,6 +15,9 @@ const config = {
 	],
   prefix: "",
   theme: {
+    fontFamily:{
+      'lexend':['Lexend','League+Spartan']
+    },
     container: {
       center: true,
       padding: "2rem",
