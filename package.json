@@ -14,19 +14,29 @@
     "compile-abi": "hardhat compile-and-extract-abi --show-stack-traces"
   },
   "dependencies": {
+    "@radix-ui/react-accordion": "^1.2.0",
+    "@radix-ui/react-hover-card": "^1.1.1",
+    "@radix-ui/react-tooltip": "^1.1.2",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
     "ethers": "^5.7.2",
+    "framer-motion": "^11.3.18",
+    "lucide-react": "^0.416.0",
     "next": "14.2.5",
+    "qss": "^3.0.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "tailwind-merge": "^2.4.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "ethers": "^6.13.1",
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
+    "ethers": "^6.13.1",
     "hardhat": "^2.22.6",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
