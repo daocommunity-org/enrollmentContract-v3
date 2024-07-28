@@ -142,7 +142,7 @@ export default function LandingPage() {
 
                 <h2 className="text-xl sm:text-2xl text-center pt-16 text-gray-500 ">
                     Learn More {" "}
-                    <LinkPreview url="https://framer.com/motion" className="text-white underline">
+                    <LinkPreview url="https://dao-community.notion.site/DAO-Community-bbe8eea63a184726aac152d72dd1cdac" className="text-white underline">
                         About Us
                     </LinkPreview>
                 </h2>
@@ -181,8 +181,8 @@ export default function LandingPage() {
                 <div className="flex flex-col items-baseline gap-4]">
                     {/* Heading and tooltip */}
                     <div className="flex gap-2 items-baseline">
-                        {objectiveHovered && <span className={`text-3xl font-extrabold`}>{"->"}</span>}
-                        <h2 onMouseEnter={()=>setObjectiveHovered(true)} onMouseLeave={()=>setObjectiveHovered(false)} className="text-3xl font-bold">Objective : </h2>
+                        {/* {objectiveHovered && <span className={`text-3xl font-extrabold`}>{"->"}</span>} */}
+                        <h2 onMouseEnter={()=>setObjectiveHovered(true)} onMouseLeave={()=>setObjectiveHovered(false)} className="text-3xl font-bold">{"->"} Objective : </h2>
                         <TooltipProvider>
                             <Tooltip>
                                 <TooltipTrigger>
@@ -332,7 +332,7 @@ export default function LandingPage() {
                             placeholder="Enter wallet address"
                             value={walletAddress}
                             onChange={(e) => setWalletAddress(e.target.value)}
-                            className="p-2 border border-slate-800 rounded"
+                            className="p-2 border border-slate-800 rounded bg-transparent text-white"
                             />
                             <Button
                             variant="outline"

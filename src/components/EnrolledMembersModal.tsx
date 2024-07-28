@@ -20,6 +20,7 @@ interface Member {
   walletAddress: string;
   name: string;
   regno: string;
+  message: string;
   enrollmentTime: number;
 }
 
@@ -62,6 +63,7 @@ export function EnrolledMembersModal({ isOpen, onClose }: { isOpen: boolean; onC
               <TableHead>Name</TableHead>
               <TableHead>Wallet Address</TableHead>
               <TableHead>Registration Number</TableHead>
+              <TableHead>Message</TableHead>
               <TableHead>Enrollment Time</TableHead>
             </TableRow>
           </TableHeader>
@@ -71,6 +73,7 @@ export function EnrolledMembersModal({ isOpen, onClose }: { isOpen: boolean; onC
                 <TableCell>{member.name}</TableCell>
                 <TableCell>{member.walletAddress}</TableCell>
                 <TableCell>{member.regno}</TableCell>
+                <TableCell>{member.message}</TableCell>
                 <TableCell>{member.enrollmentTime}</TableCell>
               </TableRow>
             ))}

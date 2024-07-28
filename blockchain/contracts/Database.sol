@@ -46,13 +46,7 @@ contract Database {
         _;
     }
 
-    function enroll(
-        string memory _name,
-        string memory _email,
-        string memory _phone,
-        string memory _regno,
-        string memory _msg
-    ) public whenNotPaused {
+    function enroll(string memory _name, string memory _email, string memory _phone, string memory _regno, string memory _msg) public whenNotPaused { require(!members[msg.sender].isActive, "Already enrolled"); memberCount++; members[msg.sender] = Member({ id: memberCount, walletAddress: msg.sender, name: _name, regno: _regno, email: _email, phone: _phone, message: _msg, enrollmentTime: block.timestamp, isActive: true }); memberList.push(msg.sender); allMembers.push(members[msg.sender]); emit MemberEnrolled(msg.sender, _name, memberCount); }
         require(!members[msg.sender].isActive, "Already enrolled");
 
         memberCount++;
@@ -74,12 +68,7 @@ contract Database {
         emit MemberEnrolled(msg.sender, _name, memberCount);
     }
 
-    function updateMemberInfo(
-        string memory _name,
-        string memory _email,
-        string memory _phoneNumber,
-        string memory _msg
-    ) public whenNotPaused {
+    function updateMemberInfo(string memory _name, string memory _email, string memory _phoneNumber, string memory _msg) public whenNotPaused {
         require(members[msg.sender].isActive, "Not enrolled");
         members[msg.sender].name = _name;
         members[msg.sender].email = _email;
@@ -88,13 +77,7 @@ contract Database {
         emit MemberUpdated(msg.sender, _name);
     }
 
-    function adminUpdateMemberInfo(
-        address _member,
-        string memory _name,
-        string memory _email,
-        string memory _phoneNumber,
-        string memory _msg
-    ) public onlyAdmin {
+    function adminUpdateMemberInfo(address _member, string memory _name, string memory _email, string memory _phoneNumber, string memory _msg) public onlyAdmin {
         require(members[_member].isActive, "Not enrolled");
         members[_member].name = _name;
         members[_member].email = _email;
@@ -109,8 +92,10 @@ contract Database {
             if (memberList[i] == _address) {
                 for (uint256 j = i; j < memberList.length - 1; j++) {
                     memberList[j] = memberList[j + 1];
+                    allMembers[j] = allMembers[j + 1];
                 }
                 memberList.pop();
+                allMembers.pop();
                 break;
             }
         }
@@ -152,7 +137,7 @@ contract Database {
         return members[_member];
     }
 
-    function getAllMemberAddr() public view returns (address[] memory) {
+    function getAllAddr() public view returns (address[] memory) {
         return memberList;
     }
 
@@ -160,7 +145,7 @@ contract Database {
         return allMembers;
     }
 
-    function getActiveMembers() public view returns (address[] memory) {
+    function getActiveAddr() public view returns (address[] memory) {
         uint256 ac = 0;
         for (uint256 i = 0; i < memberList.length; i++) {
             if (members[memberList[i]].isActive) {
@@ -168,21 +153,52 @@ contract Database {
             }
         }
 
-        address[] memory activeMembers = new address[](ac);
+        address[] memory activeAddrs = new address[](ac);
 
         uint256 count = 0;
         for (uint256 i = 0; i < memberList.length; i++) {
             if (members[memberList[i]].isActive) {
-                activeMembers[count] = memberList[i];
+                activeAddrs[count] = memberList[i];
                 count++;
             }
         }
 
+        return activeAddrs;
+    }
+
+    function getActiveMembers() public view returns (Member[] memory) {
+        uint256 ac = 0;
+        for (uint256 i = 0; i < memberList.length; i++) {
+            if (members[memberList[i]].isActive) {
+                ac++;
+            }
+        }
+
+        Member[] memory activeMembers = new Member[](ac);
+
+        uint256 count = 0;
+        for (uint256 i = 0; i < memberList.length; i++) {
+            if (members[memberList[i]].isActive) {
+                activeMembers[i] =  members[memberList[i]];
+                count++;
+            }
+        }
         return activeMembers;
     }
 
     function getMemberCount() public view returns (uint256) {
         return memberCount;
+    }
+
+    function getActiveCount() public view returns (uint256) {
+        uint256 ac = 0;
+        for (uint256 i = 0; i < memberList.length; i++) {
+            if (members[memberList[i]].isActive) {
+                ac++;
+            }
+        }
+
+        return ac;
     }
 
     function pause() public onlyAdmin {
@@ -195,21 +211,8 @@ contract Database {
         emit ContractUnpaused();
     }
 
-    function importBulk(
-        address[] memory _addresses,
-        string[] memory _names,
-        string[] memory _emails,
-        string[] memory _phones,
-        string[] memory _regnos,
-        uint256[] memory _timestamp
-    ) public onlyAdmin {
-        require(
-            _addresses.length == _names.length &&
-                _names.length == _emails.length &&
-                _emails.length == _phones.length &&
-                _phones.length == _regnos.length,
-            "Invalid input"
-        );
+    function importBulk(address[] memory _addresses, string[] memory _names, string[] memory _emails, string[] memory _phones, string[] memory _regnos, uint256[] memory _timestamp) public onlyAdmin { 
+        require(_addresses.length == _names.length && _names.length == _emails.length && _emails.length == _phones.length && _phones.length == _regnos.length, "Invalid input");
         for (uint256 i = 0; i < _addresses.length; i++) {
             memberCount++;
             members[_addresses[i]] = Member({
@@ -229,14 +232,7 @@ contract Database {
         }
     }
 
-    function importOne(
-        address _address,
-        string memory _name,
-        string memory _email,
-        string memory _phone,
-        string memory _regno,
-        uint256 _timestamp
-    ) public onlyAdmin {
+    function importOne(address _address, string memory _name, string memory _email, string memory _phone, string memory _regno, uint256 _timestamp) public onlyAdmin {
         memberCount++;
         members[_address] = Member({
             id: memberCount,

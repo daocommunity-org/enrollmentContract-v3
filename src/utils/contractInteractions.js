@@ -21,6 +21,7 @@ export async function getAllMembers() {
     walletAddress: member.walletAddress,
     name: member.name,
     regno: member.regno,
+    message: member.message,
     enrollmentTime: timeConverter(member.enrollmentTime.toNumber()),
   }));
 }
@@ -30,63 +31,6 @@ export async function isEnrolled(address) {
   return await contract.isEnrolled(address);
 }
 
-export async function enrollMember(_name, _email, _phone, _regno, _msg) {
-  const contract = await getContract();
-  const enrollWithUs = await contract.enroll(
-    _name,
-    _email,
-    _phone,
-    _regno,
-    _msg
-  );
-  if (enrollWithUs) {
-    alert("Congrats!! you are a part of DAO now");
-  } else {
-    alert("sorry we couldn't register you; try again.");
-  }
-}
-
-export async function updateMemInfo(_name, _email, _phoneNumber, _msg) {
-  const contract = await getContract();
-  const modifyInfo = await contract.enroll(_name, _email, _phone, _msg);
-  if (modifyInfo) {
-    alert("Modified Successfull");
-  } else {
-    alert("Could Not Modify the Data");
-  }
-}
-
-export async function adminUpdatememInfoFunction(
-  _member,
-  _name,
-  _email,
-  _phoneNumber,
-  _msg
-) {
-  const contract = await getContract();
-  const modifyInfoAdmin = await contract.adminUpdateMemberInfo(
-    _member,
-    _name,
-    _email,
-    _phoneNumber,
-    _msg
-  );
-  if (modifyInfoAdmin) {
-    alert("Modified successfully");
-  } else {
-    alert("Could Not Modify the Data");
-  }
-}
-
-export async function removeMemberFunction(_address) {
-  const contract = await getContract();
-  const removeMem = await contract.removeMember(_address);
-  if (removeMem) {
-    alert("member removed");
-  } else {
-    alert("could not remove member");
-  }
-}
 
 function timeConverter(UNIX_timestamp) {
   var a = new Date(UNIX_timestamp * 1000);

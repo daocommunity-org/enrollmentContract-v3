@@ -42,10 +42,10 @@ const NetworkDetails: React.FC = () => {
   });
 
   const networkDetails: NetworkDetailType = {
-    name: "Sepolia Testnet",
-    rpcUrl: "Sepolia Testnet", // Replace with actual RPC URL
-    chainId: "11155111",
-    symbol: "ETH"
+    name: "Polygon Amoy",
+    rpcUrl: "https://rpc-amoy.polygon.technology/", // Replace with actual RPC URL
+    chainId: "80002",
+    symbol: "MATIC"
   };
 
   const copyToClipboard = (field: keyof NetworkDetailType, value: string): void => {
@@ -97,11 +97,11 @@ const NetworkDetails: React.FC = () => {
           ))}
         </div>
         <div className="flex justify-between mt-6 mx-4 mb-11">
-          <LinkPreview url="https://sepolia.etherscan.io/" className='text-white'>
+          <LinkPreview url="https://amoy.polygonscan.com/" className='text-white'>
             Block Explorer
           </LinkPreview>
-          <LinkPreview url="https://sepoliafaucet.com/" className='text-white'>
-            Sepolia Faucet
+          <LinkPreview url="https://faucet.polygon.technology/" className='text-white'>
+            Polygon Faucets
           </LinkPreview>
         </div>
         {/* <div className="mt-8">
@@ -141,7 +141,7 @@ const NetworkDetails: React.FC = () => {
               <tr className='mt-4'>
                 <td className='w-[44%] h-[50px]'><CodeSnippet text1="message" /></td>
                 <td>
-                  Type any message you want to store in the blockchain forever.
+                  Type any message you want to store in the blockchain forever. <br/>
                   <span className="text-sm text-gray-400 mt-2">
                     This could be your tagline, your motivation to join, rant about your love life or anything!
                   </span>
