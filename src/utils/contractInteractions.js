@@ -56,7 +56,7 @@ export async function updateMemInfo(_name, _email, _phoneNumber, _msg) {
   }
 }
 
-async function adminUpdatememInfoFunction(
+export async function adminUpdatememInfoFunction(
   _member,
   _name,
   _email,
@@ -71,10 +71,20 @@ async function adminUpdatememInfoFunction(
     _phoneNumber,
     _msg
   );
-  if (modifyInfo) {
+  if (modifyInfoAdmin) {
     alert("Modified successfully");
   } else {
     alert("Could Not Modify the Data");
+  }
+}
+
+export async function removeMemberFunction(_address) {
+  const contract = await getContract();
+  const removeMem = await contract.removeMember(_address);
+  if (removeMem) {
+    alert("member removed");
+  } else {
+    alert("could not remove member");
   }
 }
 
