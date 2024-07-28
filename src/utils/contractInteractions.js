@@ -56,6 +56,28 @@ export async function updateMemInfo(_name, _email, _phoneNumber, _msg) {
   }
 }
 
+async function adminUpdatememInfoFunction(
+  _member,
+  _name,
+  _email,
+  _phoneNumber,
+  _msg
+) {
+  const contract = await getContract();
+  const modifyInfoAdmin = await contract.adminUpdateMemberInfo(
+    _member,
+    _name,
+    _email,
+    _phoneNumber,
+    _msg
+  );
+  if (modifyInfo) {
+    alert("Modified successfully");
+  } else {
+    alert("Could Not Modify the Data");
+  }
+}
+
 function timeConverter(UNIX_timestamp) {
   var a = new Date(UNIX_timestamp * 1000);
   var months = [
