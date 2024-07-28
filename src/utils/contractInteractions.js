@@ -32,56 +32,6 @@ export async function isEnrolled(address) {
 }
 
 
-export async function deactivateMemFunction(_member) {
-  const contract = await getContract();
-  const deactivateMem = await contract.deactivateMember(_member);
-  if (deactivateMem) {
-    alert("Member deactivated");
-  } else {
-    alert("Could Not deactivate Member");
-  }
-}
-
-export async function reactivateMemFunction(_member) {
-  const contract = await getContract();
-  const reactivateMem = await contract.reactivateMember(_member);
-  if (reactivateMem) {
-    alert("Member Reactivated");
-  } else {
-    alert("Could Not Reactivate Member");
-  }
-}
-
-export async function addAdmin(_newAdmin) {
-  const contract = await getContract();
-  const addAdmin = await contract.addAdmin(_newAdmin);
-  if (addAdmin) {
-    alert("admin added");
-  } else {
-    alert("could not add admin");
-  }
-}
-
-export async function removeAdmin(_newAdmin) {
-  const contract = await getContract();
-  const removeAdmin = await contract.removeAdmin(_newAdmin);
-  if (removeAdmin) {
-    alert("admin removed");
-  } else {
-    alert("could not remove admin");
-  }
-}
-
-export async function getMemberInfo(_member) {
-  const contract = await getContract();
-  const getMemberInfo = contract.getMemberInfo(_member);
-  if (getMemberInfo) {
-    return getMemberInfo;
-  } else {
-    alert("Can Not display member details");
-  }
-}
-
 function timeConverter(UNIX_timestamp) {
   var a = new Date(UNIX_timestamp * 1000);
   var months = [
