@@ -1,12 +1,12 @@
-import { ethers } from 'hardhat';
+import { ethers } from 'ethers';
 
 async function main() {
-  const Database = await ethers.getContractFactory("Database");
-  const database = await Database.deploy("Hello, Blockchain!");
+  // const Database = await ethers.getContractFactory("Database");
+  // const database = await Database.deploy("Hello, Blockchain!");
 
-  await database.deployed();
+  // await database.deployed();
 
-  console.log("Database deployed to:", database.address);
+  // console.log("Database deployed to:", database.address);
 }
 
 main().catch((error) => {

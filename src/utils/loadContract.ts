@@ -1,4 +1,4 @@
-import { ethers } from 'hardhat-ethers';
+import { ethers } from 'ethers';
 import Database from '../../blockchain/artifacts/contracts/Database.sol/Database.json';
 
 export const loadContract = (address: string, signer: ethers.providers.JsonRpcSigner) => {
