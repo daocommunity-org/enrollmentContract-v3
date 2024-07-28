@@ -19,6 +19,7 @@ contract DAOEnrollment {
     address[] public memberList;
     mapping(address => bool) public admins;
     bool public paused;
+    Member[] allMembers;
 
     event MemberEnrolled(address indexed member, string name, uint256 id);
     event MemberUpdated(address indexed member, string name);
@@ -60,17 +61,29 @@ contract DAOEnrollment {
             enrollmentTime: block.timestamp,
             isActive: true
         });
+
         memberList.push(msg.sender);
+        allMembers.push(members[msg.sender]);
 
         emit MemberEnrolled(msg.sender, _name, memberCount);
     }
 
-    function updateMemberInfo(string memory _name, string memory _email, string memory _phoneNumber) public whenNotPaused {
+    function updateMemberInfo(string memory _name, string memory _email, string memory _phoneNumber, string memory _msg) public whenNotPaused {
         require(members[msg.sender].isActive, "Not enrolled");
         members[msg.sender].name = _name;
         members[msg.sender].email = _email;
         members[msg.sender].phone = _phoneNumber;
+        members[msg.sender].message = _msg;
         emit MemberUpdated(msg.sender, _name);
+    }
+
+    function adminUpdateMemberInfo(address _member, string memory _name, string memory _email, string memory _phoneNumber, string memory _msg) public onlyAdmin {
+        require(members[_member].isActive, "Not enrolled");
+        members[_member].name = _name;
+        members[_member].email = _email;
+        members[_member].phone = _phoneNumber;
+        members[_member].message = _msg;
+        emit MemberUpdated(_member, _name);
     }
 
     function removeMember(address _address) public whenNotPaused onlyAdmin{
@@ -120,8 +133,12 @@ contract DAOEnrollment {
         return members[_member];
     }
 
-    function getAllMembers() public view returns (address[] memory) {
+    function getAllMemberAddr() public view returns (address[] memory) {
         return memberList;
+    }
+
+    function getAllMembers() public view returns (Member[] memory) {
+        return allMembers;
     }
 
     function getActiveMembers() public view returns (address[] memory) {
@@ -149,4 +166,45 @@ contract DAOEnrollment {
         paused = false;
         emit ContractUnpaused();
     }
+
+    function importBulk(address[] memory _addresses, string[] memory _names, string[] memory _emails, string[] memory _phones, string[] memory _regnos, uint256[] memory _timestamp) public onlyAdmin {
+        require(_addresses.length == _names.length && _names.length == _emails.length && _emails.length == _phones.length && _phones.length == _regnos.length && _regnos.length == _msgs.length, "Invalid input");
+        for (uint256 i = 0; i < _addresses.length; i++) {
+            memberCount++;
+            members[_addresses[i]] = Member({
+                id: memberCount,
+                walletAddress: _addresses[i],
+                name: _names[i],
+                regno: _regnos[i],
+                email: _emails[i],
+                phone: _phones[i],
+                message: "",
+                enrollmentTime: _timestamp[i],
+                isActive: true
+            });
+
+            memberList.push(_addresses[i]);
+            allMembers.push(members[_addresses[i]]);
+
+        }
+    }
+
+    function importOne(address _address, string memory _name, string memory _email, string memory _phone, string memory _regno, uint256 _timestamp) public onlyAdmin {
+        memberCount++;
+        members[_address] = Member({
+            id: memberCount,
+            walletAddress: _address,
+            name: _name,
+            regno: _regno,
+            email: _email,
+            phone: _phone,
+            message: "",
+            enrollmentTime: _timestamp,
+            isActive: true
+        });
+
+        memberList.push(_address);
+        allMembers.push(members[_address]);
+    }
+
 }
