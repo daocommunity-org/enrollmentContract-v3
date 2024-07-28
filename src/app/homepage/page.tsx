@@ -11,11 +11,13 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger,
     TextRevealCard, TextRevealCardDescription, TextRevealCardTitle,
     Sheet, SheetClose, SheetContent, SheetDescription, SheetTrigger, SheetFooter, SheetHeader, SheetTitle,
 } from "@/components/ui";
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 import SmoothScroll from '@/utils/smoothScroll';
 import NetworkDetails from "@/components/NetworkDetails";
+import { EnrolledMembersModal } from "@/components/EnrolledMembersModal";
+import { isEnrolled } from "@/utils/contractInteractions";
 
 export default function LandingPage() {
     const [term1,setTerm1]=useState(false)
@@ -25,12 +27,38 @@ export default function LandingPage() {
     const [objectiveHovered,setObjectiveHovered]=useState(false)
     const [detailedTutorialHovered,setDetailedTutorialHovered] = useState(false)
     const [finallyHovered,setFinallyHovered] = useState(false)
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isCheckingEnrollment, setIsCheckingEnrollment] = useState(false);
+    const [walletAddress, setWalletAddress] = useState('');
 
     useEffect(()=>{
         setTimeout(()=>{
             setAlertVisible(true)
         },4000)
     },[])
+
+    
+    const handleEnrolledClick = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleMomentOfTruthClick = () => {
+        setIsCheckingEnrollment(true);
+    };
+
+    const handleCheckEnrollment = async () => {
+        if (walletAddress) {
+            const enrolled = await isEnrolled(walletAddress);
+            if (enrolled) {
+                alert("Congratulations! You are enrolled in the DAO Community!");
+            } else {
+                alert("Better luck next time. You are not enrolled yet.");
+            }
+        }
+        setIsCheckingEnrollment(false);
+        setWalletAddress('');
+    };
+
 
     return (
         <>
@@ -271,7 +299,7 @@ export default function LandingPage() {
                                 <tr className="flex gap-2 items-baseline">
                                     <td>10.</td>
                                     <td>
-                                    Once transaction is complete, head over to <button className="bg-[#212121] p-1 rounded-sm cursor-poi" onClick={()=>alert("table will be shown")}>enrolled</button> and check if your name is registered.
+                                    Once transaction is complete, head over to <button className="bg-[#212121] p-1 rounded-sm cursor-poi" onClick={handleEnrolledClick}>enrolled</button> and check if your name is registered.
                                     </td>
                                 </tr>
                             </tbody>
@@ -289,12 +317,36 @@ export default function LandingPage() {
                     {/* Points Section */}
                     <div className="sm:pl-8 flex flex-col gap-4">
                         <p>Connect your wallet and check if you are registered. If you did all the steps correctly, you will receive a confetti party and be added to the community :{")"} </p>
-                        <Button
+                        {!isCheckingEnrollment ? (
+                    <Button
+                        variant="outline"
+                        className="text-white border-slate-800"
+                        onClick={handleMomentOfTruthClick}
+                    >
+                        Moment Of Truth
+                    </Button>
+                    ) : (
+                        <div className="flex flex-col gap-4">
+                            <input
+                            type="text"
+                            placeholder="Enter wallet address"
+                            value={walletAddress}
+                            onChange={(e) => setWalletAddress(e.target.value)}
+                            className="p-2 border border-slate-800 rounded"
+                            />
+                            <Button
                             variant="outline"
                             className="text-white border-slate-800"
+                            onClick={handleCheckEnrollment}
                             >
-                                Moment Of Truth
-                        </Button>
+                            Check Enrollment
+                            </Button>
+                        </div>
+                    )}
+
+                    {/* Add the EnrolledMembersModal */}
+                    <EnrolledMembersModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+            
                     </div>
                     
                 </div>

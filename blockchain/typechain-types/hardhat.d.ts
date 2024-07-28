@@ -14,19 +14,19 @@ import * as Contracts from ".";
 declare module "hardhat/types/runtime" {
   interface HardhatEthersHelpers extends HardhatEthersHelpersBase {
     getContractFactory(
-      name: "DAOEnrollment",
+      name: "Database",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.DAOEnrollment__factory>;
+    ): Promise<Contracts.Database__factory>;
     getContractFactory(
       name: "MembersDATA",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.MembersDATA__factory>;
 
     getContractAt(
-      name: "DAOEnrollment",
+      name: "Database",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
-    ): Promise<Contracts.DAOEnrollment>;
+    ): Promise<Contracts.Database>;
     getContractAt(
       name: "MembersDATA",
       address: string | ethers.Addressable,
@@ -34,19 +34,19 @@ declare module "hardhat/types/runtime" {
     ): Promise<Contracts.MembersDATA>;
 
     deployContract(
-      name: "DAOEnrollment",
+      name: "Database",
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.DAOEnrollment>;
+    ): Promise<Contracts.Database>;
     deployContract(
       name: "MembersDATA",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.MembersDATA>;
 
     deployContract(
-      name: "DAOEnrollment",
+      name: "Database",
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
-    ): Promise<Contracts.DAOEnrollment>;
+    ): Promise<Contracts.Database>;
     deployContract(
       name: "MembersDATA",
       args: any[],

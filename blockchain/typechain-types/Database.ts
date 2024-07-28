@@ -21,9 +21,9 @@ import type {
   TypedLogDescription,
   TypedListener,
   TypedContractMethod,
-} from "../common";
+} from "./common";
 
-export declare namespace DAOEnrollment {
+export declare namespace Database {
   export type MemberStruct = {
     id: BigNumberish;
     walletAddress: AddressLike;
@@ -59,7 +59,7 @@ export declare namespace DAOEnrollment {
   };
 }
 
-export interface DAOEnrollmentInterface extends Interface {
+export interface DatabaseInterface extends Interface {
   getFunction(
     nameOrSignature:
       | "addAdmin"
@@ -351,11 +351,11 @@ export namespace MemberUpdatedEvent {
   export type LogDescription = TypedLogDescription<Event>;
 }
 
-export interface DAOEnrollment extends BaseContract {
-  connect(runner?: ContractRunner | null): DAOEnrollment;
+export interface Database extends BaseContract {
+  connect(runner?: ContractRunner | null): Database;
   waitForDeployment(): Promise<this>;
 
-  interface: DAOEnrollmentInterface;
+  interface: DatabaseInterface;
 
   queryFilter<TCEvent extends TypedContractEvent>(
     event: TCEvent,
@@ -434,7 +434,7 @@ export interface DAOEnrollment extends BaseContract {
 
   getAllMembers: TypedContractMethod<
     [],
-    [DAOEnrollment.MemberStructOutput[]],
+    [Database.MemberStructOutput[]],
     "view"
   >;
 
@@ -442,7 +442,7 @@ export interface DAOEnrollment extends BaseContract {
 
   getMemberInfo: TypedContractMethod<
     [_member: AddressLike],
-    [DAOEnrollment.MemberStructOutput],
+    [Database.MemberStructOutput],
     "view"
   >;
 
@@ -577,7 +577,7 @@ export interface DAOEnrollment extends BaseContract {
   ): TypedContractMethod<[], [string[]], "view">;
   getFunction(
     nameOrSignature: "getAllMembers"
-  ): TypedContractMethod<[], [DAOEnrollment.MemberStructOutput[]], "view">;
+  ): TypedContractMethod<[], [Database.MemberStructOutput[]], "view">;
   getFunction(
     nameOrSignature: "getMemberCount"
   ): TypedContractMethod<[], [bigint], "view">;
@@ -585,7 +585,7 @@ export interface DAOEnrollment extends BaseContract {
     nameOrSignature: "getMemberInfo"
   ): TypedContractMethod<
     [_member: AddressLike],
-    [DAOEnrollment.MemberStructOutput],
+    [Database.MemberStructOutput],
     "view"
   >;
   getFunction(

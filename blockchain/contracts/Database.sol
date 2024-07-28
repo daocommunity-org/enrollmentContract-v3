@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-contract DAOEnrollment {
+contract Database {
     struct Member {
         uint256 id;
         address walletAddress;
@@ -168,7 +168,7 @@ contract DAOEnrollment {
     }
 
     function importBulk(address[] memory _addresses, string[] memory _names, string[] memory _emails, string[] memory _phones, string[] memory _regnos, uint256[] memory _timestamp) public onlyAdmin {
-        require(_addresses.length == _names.length && _names.length == _emails.length && _emails.length == _phones.length && _phones.length == _regnos.length && _regnos.length == _msgs.length, "Invalid input");
+        require(_addresses.length == _names.length && _names.length == _emails.length && _emails.length == _phones.length && _phones.length == _regnos.length, "Invalid input");
         for (uint256 i = 0; i < _addresses.length; i++) {
             memberCount++;
             members[_addresses[i]] = Member({
