@@ -86,7 +86,7 @@ export default function LandingPage() {
                         Thanks for showing interest in the DAO Community. 
                     </p>
                     <p className="mb-[20px]">
-                        It wouldn't be possible for us to bring this revolutionary idea up and running if you aren't a part of it. Decentralization and Inclusion is the core value around which a DAO survives!
+                        It wouldn&apost be possible for us to bring this revolutionary idea up and running if you aren&apost a part of it. Decentralization and Inclusion is the core value around which a DAO survives!
                     </p>
                 </div>
             </motion.div>
@@ -114,7 +114,7 @@ export default function LandingPage() {
                                         setTerm1(true)
                                         if(term2) setOnBoardingVisible(true)
                                         }} />
-                                    <p>Yess I've got it in me to be part of DAO!</p>
+                                    <p>Yess I&aposve got it in me to be part of DAO!</p>
                                 </div>
                             </div>
                         </AccordionContent>
@@ -133,7 +133,7 @@ export default function LandingPage() {
                                     setTerm2(true)
                                     if(term1) setOnBoardingVisible(true)
                                     }} /> 
-                                <p>Yess I've got it in me to be part of DAO!</p>
+                                <p>Yess I&aposve got it in me to be part of DAO!</p>
                             </div>
                         </div>
                     </AccordionContent>
@@ -294,7 +294,7 @@ export default function LandingPage() {
                                 </tr>
                                 <tr className="flex gap-2 items-baseline">
                                     <td>9.</td>
-                                    <td>The network will deduct some fees for transacting, but don't worry, it's free crypto.</td>
+                                    <td>The network will deduct some fees for transacting, but don&apost worry, it&aposs free crypto.</td>
                                 </tr>
                                 <tr className="flex gap-2 items-baseline">
                                     <td>10.</td>
