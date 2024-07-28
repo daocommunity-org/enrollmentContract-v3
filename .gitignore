@@ -38,6 +38,7 @@ next-env.d.ts
 # Hardhat files
 blockchain/artifacts/build-info
 blockchain/cache
+blockchain/typechain-types
 
 # Misc
 node_modules
