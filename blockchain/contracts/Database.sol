@@ -70,10 +70,29 @@ contract Database {
 
     function updateMemberInfo(string memory _name, string memory _email, string memory _phoneNumber, string memory _msg) public whenNotPaused {
         require(members[msg.sender].isActive, "Not enrolled");
-        members[msg.sender].name = _name;
-        members[msg.sender].email = _email;
-        members[msg.sender].phone = _phoneNumber;
-        members[msg.sender].message = _msg;
+        // members[msg.sender].name = _name;
+        // members[msg.sender].email = _email;
+        // members[msg.sender].phone = _phoneNumber;
+        // members[msg.sender].message = _msg;
+        if (bytes(_name).length > 0) {
+            members[msg.sender].name = _name;
+        }
+        if (bytes(_email).length > 0) {
+            members[msg.sender].email = _email;
+        }
+        if (bytes(_phoneNumber).length > 0) {
+            members[msg.sender].phone = _phoneNumber;
+        }
+        if (bytes(_msg).length > 0) {
+            members[msg.sender].message = _msg;
+        }
+        for (uint256 i = 0; i < memberList.length; i++) {
+            if (memberList[i] == msg.sender) {
+                allMembers[i] = members[msg.sender];
+                break;
+            }
+        }
+
         emit MemberUpdated(msg.sender, _name);
     }
 

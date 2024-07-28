@@ -1,5 +1,5 @@
 'use client'
-
+import Link from "next/link";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, 
     Alert,  AlertDescription,  AlertTitle,  
     Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow, TableFooter,
@@ -11,6 +11,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger,
     TextRevealCard, TextRevealCardDescription, TextRevealCardTitle,
     Sheet, SheetClose, SheetContent, SheetDescription, SheetTrigger, SheetFooter, SheetHeader, SheetTitle,
 } from "@/components/ui";
+import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer"
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
@@ -37,7 +38,9 @@ export default function LandingPage() {
         },4000)
     },[])
 
-    
+    const [showPopup, setShowPopup] = useState(false);
+    const [isEnrolledStatus, setIsEnrolledStatus] = useState(false);
+
     const handleEnrolledClick = () => {
         setIsModalOpen(true);
     };
@@ -49,14 +52,19 @@ export default function LandingPage() {
     const handleCheckEnrollment = async () => {
         if (walletAddress) {
             const enrolled = await isEnrolled(walletAddress);
-            if (enrolled) {
-                alert("Congratulations! You are enrolled in the DAO Community!");
-            } else {
-                alert("Better luck next time. You are not enrolled yet.");
-            }
+            setIsEnrolledStatus(enrolled);
+            setShowPopup(true);
         }
         setIsCheckingEnrollment(false);
         setWalletAddress('');
+    };
+    
+    const closePopup = () => {
+        setShowPopup(false);
+    };
+    
+    const redirectToWhatsApp = () => {
+        window.open('https://chat.whatsapp.com/DXKDA2LDeveFFzc5iYBXQu', '_blank');
     };
 
 
@@ -86,7 +94,7 @@ export default function LandingPage() {
                         Thanks for showing interest in the DAO Community. 
                     </p>
                     <p className="mb-[20px]">
-                        It wouldn&apost be possible for us to bring this revolutionary idea up and running if you aren&apost a part of it. Decentralization and Inclusion is the core value around which a DAO survives!
+                        It wouldn=t be possible for us to bring this revolutionary idea up and running if you aren=t a part of it. Decentralization and Inclusion is the core value around which a DAO survives!
                     </p>
                 </div>
             </motion.div>
@@ -114,7 +122,7 @@ export default function LandingPage() {
                                         setTerm1(true)
                                         if(term2) setOnBoardingVisible(true)
                                         }} />
-                                    <p>Yess I&aposve got it in me to be part of DAO!</p>
+                                    <p>Yess I=ve got it in me to be part of DAO!</p>
                                 </div>
                             </div>
                         </AccordionContent>
@@ -133,7 +141,7 @@ export default function LandingPage() {
                                     setTerm2(true)
                                     if(term1) setOnBoardingVisible(true)
                                     }} /> 
-                                <p>Yess I&aposve got it in me to be part of DAO!</p>
+                                <p>Yess I=ve got it in me to be part of DAO!</p>
                             </div>
                         </div>
                     </AccordionContent>
@@ -294,18 +302,34 @@ export default function LandingPage() {
                                 </tr>
                                 <tr className="flex gap-2 items-baseline">
                                     <td>9.</td>
-                                    <td>The network will deduct some fees for transacting, but don&apost worry, it&aposs free crypto.</td>
+                                    <td>The network will deduct some fees for transacting, but don=t worry, it=s free crypto.</td>
                                 </tr>
                                 <tr className="flex gap-2 items-baseline">
                                     <td>10.</td>
+                                    {/* <td>
+                                    Once transaction is complete, head over to <button className="bg-[#212121] p-1 rounded-sm cursor-poi" onClick={}>enrolled</button> and check if your name is registered.
+                                    </td> */}
                                     <td>
-                                    Once transaction is complete, head over to <button className="bg-[#212121] p-1 rounded-sm cursor-poi" onClick={handleEnrolledClick}>enrolled</button> and check if your name is registered.
+                                    Once transaction is complete, head over to{" "}
+                                    <Link href="/enrolled">
+                                        <button className="bg-[#212121] p-1 rounded-sm cursor-pointer">
+                                        enrolled
+                                        </button>
+                                    </Link>
+                                    {" "}and check if your name is registered.
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
+                
+                <h2 className="text-xl sm:text-3xl text-center text-gray-500 ">
+                    Incase you are having any difficulties, feel free to ask for help at <LinkPreview url="https://chat.whatsapp.com/JbNHLO9WMBzCzys5xoVGfG" className="text-white underline">
+                        WhatsApp 
+                    </LinkPreview>
+                </h2>
+                
 
                 {/* Finally Section */}
                 <div className="flex flex-col items-baseline w-[80%] gap-4">
@@ -356,7 +380,25 @@ export default function LandingPage() {
         {/* {alertVisible && OnBoardingVisible && <Objective objectiveHovered={objectiveHovered} setObjectiveHovered={setObjectiveHovered} detailedTutorialHovered={detailedTutorialHovered} setDetailedTutorialHovered={setDetailedTutorialHovered} finallyHovered={finallyHovered} setFinallyHovered={setFinallyHovered} />} */}
         {/* <Objective objectiveHovered={objectiveHovered} setObjectiveHovered={setObjectiveHovered}/> */}
       </div>
-        
+      {showPopup && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                <div className="bg-black text-white p-6 rounded-lg max-w-sm backdrop-blur-xl">
+                    {isEnrolledStatus ? (
+                        <>
+                            <h2 className="text-xl font-bold mb-4">Congratulations!</h2>
+                            <p className="mb-4">You have successfully onboarded yourself to DAO. Join the WhatsApp group.</p>
+                            <Button onClick={redirectToWhatsApp}>Join WhatsApp Group</Button>
+                        </>
+                    ) : (
+                        <>
+                            <h2 className="text-xl font-bold mb-4">Aww, Better Luck Next Time</h2>
+                            <p className="mb-4">Read and go through the Tutorial once again and make sure you followed all the steps.</p>
+                            <Button onClick={closePopup}>Close</Button>
+                        </>
+                    )}
+                </div>
+            </div>
+        )}
         </>
     )
 }
