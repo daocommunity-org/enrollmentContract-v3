@@ -88,6 +88,26 @@ export async function removeMemberFunction(_address) {
   }
 }
 
+export async function deactivateMemFunction(_member) {
+  const contract = await getContract();
+  const deactivateMem = await contract.deactivateMember(_member);
+  if (deactivateMem) {
+    alert("Member deactivated");
+  } else {
+    alert("Could Not deactivate Member");
+  }
+}
+
+export async function reactivateMemFunction(_member) {
+  const contract = await getContract();
+  const reactivateMem = await contract.reactivateMember(_member);
+  if (reactivateMem) {
+    alert("Member Reactivated");
+  } else {
+    alert("Could Not Reactivate Member");
+  }
+}
+
 function timeConverter(UNIX_timestamp) {
   var a = new Date(UNIX_timestamp * 1000);
   var months = [
