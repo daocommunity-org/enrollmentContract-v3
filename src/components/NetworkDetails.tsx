@@ -127,7 +127,7 @@ const NetworkDetails: React.FC = () => {
                 <td>Enter your name</td>
               </tr>
               <tr className='mt-4'>
-                <td><CodeSnippet text1="regno" /></td>
+                <td><CodeSnippet text1="uid" /></td>
                 <td>Enter your VIT registration number</td>
               </tr>
               <tr>
