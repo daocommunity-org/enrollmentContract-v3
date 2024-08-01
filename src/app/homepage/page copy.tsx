@@ -78,13 +78,13 @@ export default function LandingPage() {
                                 <div>🧩 Basic idea of Chrome Extensions and Cryptography (Optional)<br/></div>
                                 <div>🏛️ Belief in Democracy<br/></div>
                                 <div>💫 Never-ending supply of enthusiasm<br/></div>
-                                <div className="flex gap-2 items-center ">
+                                {/* <div className="flex gap-2 items-center ">
                                     <Checkbox onClick={()=>{
                                         setTerm1(true)
                                         if(term2) setOnBoardingVisible(true)
                                         }} />
                                     <p>Yess I&aposve got it in me to be part of DAO!</p>
-                                </div>
+                                </div> */}
                             </div>
                         </AccordionContent>
                     </AccordionItem>
@@ -97,13 +97,13 @@ export default function LandingPage() {
                             <div>🔓 Exposure to next-generation of Organizational Structures<br/></div>
                             <div>🌐 Interactions with global leaders in the space<br/></div>
                             <div>💰 Bountiful reward in governance tokens for every contribution<br/></div>
-                            <div className="flex gap-2 items-center ">
+                            {/* <div className="flex gap-2 items-center ">
                                 <Checkbox onClick={()=>{
                                     setTerm2(true)
                                     if(term1) setOnBoardingVisible(true)
                                     }} /> 
                                 <p>Yess I&aposve got it in me to be part of DAO!</p>
-                            </div>
+                            </div> */}
                         </div>
                     </AccordionContent>
                     </AccordionItem>

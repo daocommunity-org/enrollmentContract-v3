@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 import Database from "../../blockchain/artifacts/contracts/Database.sol/Database.json" assert { type: "json" };
 
-const contractAddress = "0x80bff3474C93c1eA07081cEF6bb87Bc1626ae949";
+const contractAddress = "0x904d7d952A6eE1DAb003636c426d74b077b8cA61";
 const rpcUrl = "https://rpc-amoy.polygon.technology/";
 
 function getProvider() {

@@ -57,7 +57,7 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
-}
+} 
 
 @layer base {
   * {
@@ -71,7 +71,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
 
 body{
-  background-image: url("/bg-texture.png");
+  background-image: url("/bg.svg");
   background-size: cover; 
   background-repeat: no-repeat;
   background-attachment: fixed;

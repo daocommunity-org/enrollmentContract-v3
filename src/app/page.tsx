@@ -1,10 +1,13 @@
+"use client"
+
 import Link from 'next/link'
+import Router from 'next/router'
 
 export default function Home() {
-  return (
-    <Link href="/homepage" className='text-white'>
-      Home
-    </Link>
-    
-  )
+  //auto redirect to /home
+  const handleRedirect = () => {
+    Router.push('/homepage')
+  }
+
+  {window.location.href = "/homepage"}
 }

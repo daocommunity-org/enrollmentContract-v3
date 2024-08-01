@@ -47,32 +47,36 @@ export type Member = {
   enrollmentTime: string;
 }
 
+function truncateAddress(address: string) {
+  return `${address.slice(0, 6)}...${address.slice(-4)}`;
+}
+
 export default function EnrolledPage() {
   const columns: ColumnDef<Member>[] = [
     {
       accessorKey: "name",
       header: "Name",
-      cell: ({ row }) => <div className="capitalize">{row.getValue("name")}</div>,
+      cell: ({ row }) => <div className="capitalize whitespace-nowrap">{row.getValue("name")}</div>,
     },
     {
       accessorKey: "walletAddress",
       header: "Wallet Address",
-      cell: ({ row }) => <div className="font-mono">{row.getValue("walletAddress")}</div>,
+      cell: ({ row }) => <div className="font-mono whitespace-nowrap">{truncateAddress(row.getValue("walletAddress"))}</div>,
     },
     {
       accessorKey: "regno",
       header: "Reg No",
-      cell: ({ row }) => <div>{row.getValue("regno")}</div>,
+      cell: ({ row }) => <div className="">{row.getValue("regno")}</div>,
     },
     {
       accessorKey: "message",
       header: "Message",
-      cell: ({ row }) => <div>{row.getValue("message")}</div>,
+      cell: ({ row }) => <div className="overflow-hidden text-ellipsis min-w-[50vw] md:min-w-0 md:max-w-xs">{row.getValue("message")}</div>,
     },
     {
       accessorKey: "enrollmentTime",
       header: "Enrollment Time",
-      cell: ({ row }) => <div>{row.getValue("enrollmentTime")}</div>,
+      cell: ({ row }) => <div className="">{row.getValue("enrollmentTime")}</div>,
     },
   ]
 
@@ -117,25 +121,30 @@ export default function EnrolledPage() {
   })
 
   return (
-    <div className="min-h-screen bg-black text-white p-8">
-      <Link href="/"><div className="flex items-center mb-8"><CaretSortIcon className="h-4 w-4 mr-2" />Back</div></Link>
-      <h1 className="text-3xl font-bold mb-2 text-left">Enrollment List</h1>
-      <p className="text-gray-400 mb-8 text-left">
-        You can view all those who have signed the contract and joined the DAO Community.
-      </p>
+    <div className="min-h-screen bg-black text-white">
+      <div className="max-w-7xl mx-auto p-8">
+        <Link href="/homepage" className="inline-block mb-8">
+          <div className="flex items-center">
+            <CaretSortIcon className="h-4 w-4 mr-2" />
+            Back
+          </div>
+        </Link>
+        <h1 className="text-3xl font-bold mb-2">Enrollment List</h1>
+        <p className="text-gray-400 mb-8">
+          You can view all those who have signed the contract and joined the DAO Community.
+        </p>
       
       {isLoading ? (
         <div className="flex justify-center items-center h-64">
-          {/* <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-white"></div> */}
           <div className="flex space-x-2 animate-pulse">
-        <div className="w-3 h-3 bg-gray-500 rounded-full"></div>
-        <div className="w-3 h-3 bg-gray-500 rounded-full"></div>
-        <div className="w-3 h-3 bg-gray-500 rounded-full"></div>
-    </div>
+            <div className="w-3 h-3 bg-gray-500 rounded-full"></div>
+            <div className="w-3 h-3 bg-gray-500 rounded-full"></div>
+            <div className="w-3 h-3 bg-gray-500 rounded-full"></div>
+          </div>
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center">
-          <div className="w-full max-w-4xl">
+          <div className="w-full">
             <div className="flex items-center justify-between py-4">
               <Input
                 placeholder="Filter names..."
@@ -172,23 +181,21 @@ export default function EnrolledPage() {
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
-            <div className="rounded-md border border-gray-700 overflow-hidden">
-              <Table>
+            <div className="rounded-md border border-gray-700 overflow-x-auto">
+              <Table className="min-w-full">
                 <TableHeader>
                   {table.getHeaderGroups().map((headerGroup) => (
-                    <TableRow key={headerGroup.id} className="bg-black-900 text-white/50 py-2">
-                      {headerGroup.headers.map((header) => {
-                        return (
-                          <TableHead key={header.id} className="text-black-300" my-2>
-                            {header.isPlaceholder
-                              ? null
-                              : flexRender(
-                                  header.column.columnDef.header,
-                                  header.getContext()
-                                )}
-                          </TableHead>
-                        )
-                      })}
+                    <TableRow key={headerGroup.id} className="bg-black-900 text-white/50">
+                      {headerGroup.headers.map((header) => (
+                        <TableHead key={header.id} className="text-black-300 px-4 py-2 whitespace-nowrap">
+                          {header.isPlaceholder
+                            ? null
+                            : flexRender(
+                                header.column.columnDef.header,
+                                header.getContext()
+                              )}
+                        </TableHead>
+                      ))}
                     </TableRow>
                   ))}
                 </TableHeader>
@@ -201,7 +208,7 @@ export default function EnrolledPage() {
                         className="border-b border-gray-700"
                       >
                         {row.getVisibleCells().map((cell) => (
-                          <TableCell key={cell.id}>
+                          <TableCell key={cell.id} className="px-4 py-2">
                             {flexRender(cell.column.columnDef.cell, cell.getContext())}
                           </TableCell>
                         ))}
@@ -243,5 +250,6 @@ export default function EnrolledPage() {
         </div>
       )}
     </div>
+  </div>
   )
 }

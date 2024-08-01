@@ -17,7 +17,6 @@ import { useEffect, useState } from "react";
 
 import SmoothScroll from '@/utils/smoothScroll';
 import NetworkDetails from "@/components/NetworkDetails";
-import { EnrolledMembersModal } from "@/components/EnrolledMembersModal";
 import { isEnrolled } from "@/utils/contractInteractions";
 
 export default function LandingPage() {
@@ -80,21 +79,22 @@ export default function LandingPage() {
                 animate={{ y: 20, opacity: 1 }}
                 transition={{ ease: "easeInOut", duration: 1 }}
             >
-                <h1 className="md:hidden font-lexend block font-bold text-7xl">Hey There! 👋</h1>
-                <div className="md:block hidden ">
+                <h1 className="font-lexend block font-bold text-7xl">Hey There! 👋</h1>
+                {/* <h1 className="md:hidden font-lexend block font-bold text-7xl">Hey There! 👋</h1> */}
+                {/* <div className="md:block hidden ">
                     <TextRevealCard className="text-center justify-center align-center flex items-center "
                         text="Hey There! 👋"
                         revealText="Welcome to DAO Community"
                     >
                     </TextRevealCard>
-                </div> 
+                </div>  */}
 
-                <div className="flex text-l lg:text-2xl flex-col gap-4">
-                    <p>
+                <div className="flex text-l lg:text-2xl flex-col gap-4 text-[#b7b7b7]">
+                    <p className="mt-5">
                         Thanks for showing interest in the DAO Community. 
                     </p>
                     <p className="mb-[20px]">
-                        It wouldn=t be possible for us to bring this revolutionary idea up and running if you aren=t a part of it. Decentralization and Inclusion is the core value around which a DAO survives!
+                        It wouldn{"'"}t be possible for us to bring this revolutionary idea up and running if you aren{"'"}t a part of it. Decentralization and Inclusion is the core value around which a DAO survives!
                     </p>
                 </div>
             </motion.div>
@@ -111,38 +111,38 @@ export default function LandingPage() {
                     <AccordionItem value="item-1">
                         <AccordionTrigger>What we Expect in you</AccordionTrigger>
                         <AccordionContent>
-                            <div className="flex flex-col gap-1  ">
+                            <div className="mt-2 flex flex-col gap-1  ">
                                 <div>🔎 Googling <br/></div>
                                 <div>📚 Willingness to learn<br/></div>
                                 <div>🧩 Basic idea of Chrome Extensions and Cryptography (Optional)<br/></div>
                                 <div>🏛️ Belief in Democracy<br/></div>
                                 <div>💫 Never-ending supply of enthusiasm<br/></div>
-                                <div className="flex gap-2 items-center ">
+                                {/* <div className="flex gap-2 items-center ">
                                     <Checkbox onClick={()=>{
                                         setTerm1(true)
                                         if(term2) setOnBoardingVisible(true)
                                         }} />
                                     <p>Yess I=ve got it in me to be part of DAO!</p>
-                                </div>
+                                </div> */}
                             </div>
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-2">
                     <AccordionTrigger>What can you expect from us</AccordionTrigger>
                     <AccordionContent>
-                        <div className="flex gap-4 flex-col">
+                        <div className="mt-2 flex gap-1 flex-col">
                             <div>🔗 Work Experience in the Blockchain & Web3 domain<br/></div>
                             <div>⚖️ Equal and unbiased treatment of all members<br/></div>
                             <div>🔓 Exposure to next-generation of Organizational Structures<br/></div>
                             <div>🌐 Interactions with global leaders in the space<br/></div>
                             <div>💰 Bountiful reward in governance tokens for every contribution<br/></div>
-                            <div className="flex gap-2 items-center ">
+                            {/* <div className="flex gap-2 items-center ">
                                 <Checkbox onClick={()=>{
                                     setTerm2(true)
                                     if(term1) setOnBoardingVisible(true)
                                     }} /> 
                                 <p>Yess I=ve got it in me to be part of DAO!</p>
-                            </div>
+                            </div> */}
                         </div>
                     </AccordionContent>
                     </AccordionItem>
@@ -189,8 +189,8 @@ export default function LandingPage() {
                 <div className="flex flex-col items-baseline gap-4]">
                     {/* Heading and tooltip */}
                     <div className="flex gap-2 items-baseline">
-                        {/* {objectiveHovered && <span className={`text-3xl font-extrabold`}>{"->"}</span>} */}
-                        <h2 onMouseEnter={()=>setObjectiveHovered(true)} onMouseLeave={()=>setObjectiveHovered(false)} className="text-3xl font-bold">{"->"} Objective : </h2>
+                        {/* {objectiveHovered && <span className={`text-3xl font-extrabold`}>{""}</span>} */}
+                        <h2 onMouseEnter={()=>setObjectiveHovered(true)} onMouseLeave={()=>setObjectiveHovered(false)} className="text-3xl font-bold">{""} Objective : </h2>
                         <TooltipProvider>
                             <Tooltip>
                                 <TooltipTrigger>
@@ -198,7 +198,7 @@ export default function LandingPage() {
                                         <path fill="white" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336l24 0 0-64-24 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l48 0c13.3 0 24 10.7 24 24l0 88 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-80 0c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
                                     </svg>
                                 </TooltipTrigger>
-                                <TooltipContent>
+                                <TooltipContent className=" bg-black outline-1 text-white">
                                     <p>Methods can be called through the explore</p>
                                 </TooltipContent>
                             </Tooltip>
@@ -220,7 +220,7 @@ export default function LandingPage() {
                             </li>
                             <li className="flex flex-col gap-2 lg:text-xl sm:text-xs">
                                 <p>from the contract</p>
-                                <CodeSnippet text1="0x23b72C97e7cD3fF54e3f35A20E99FA9Bc896D431" />
+                                <CodeSnippet text1="0x904d7d952A6eE1DAb003636c426d74b077b8cA61" />
                             </li>
                         </ul>
                     </div>
@@ -242,7 +242,7 @@ export default function LandingPage() {
                 <div className="flex flex-col items-baseline gap-4 w-[95%]">
                     {/* Heading */}
                     <div className="flex gap-2 items-baseline">
-                        <h2 className="text-xl sm:text-3xl font-bold"> {"->"} Detailed Tutorial</h2>
+                        <h2 className="text-xl sm:text-3xl font-bold"> {""} Detailed Tutorial</h2>
                     </div>
 
                     {/* Points Section */}
@@ -250,36 +250,36 @@ export default function LandingPage() {
                         <table>
                             <tbody className="flex flex-col gap-2">
                                 <tr className="flex gap-2 items-baseline">
-                                    <td>1.</td>
+                                    <td className="text-2xl pr-3">1.</td>
                                     <td>Download Metamask (or any EVM wallet that suits you) from the Chrome Web Store (PC) or Play Store/ App Store (Mobile)</td>
                                 </tr>
                                 <tr className="flex gap-2 items-baseline">
-                                    <td>2.</td>
+                                    <td className="text-2xl pr-3">2.</td>
                                     <td> Follow the instructions, and take a backup.<br/>
                                         <span className="font-bold">Please note:</span>  Do not share your private key with anyone. It may cause a loss of funds
                                     </td>
                                 </tr>
                                 <tr className="flex gap-2 items-baseline">
-                                    <td>3.</td>
+                                    <td className="text-2xl pr-3 ">3.</td>
                                     <td>  
                                         Connect to the Custom RPC <br />
                                         <span className="text-gray-500">Check out the network details for RPC Details</span>
                                     </td>
                                 </tr>
                                 <tr className="flex gap-2 items-baseline">
-                                    <td>4.</td>
+                                    <td className="text-2xl pr-3">4.</td>
                                     <td>Head over to the faucet page to get some free testing crypto</td>
                                 </tr>
                                 <tr className="flex gap-2 items-baseline">
-                                    <td>5.</td>
+                                    <td className="text-2xl pr-3">5.</td>
                                     <td>Open up the {" "}  
                                         <span>
                                             <TooltipProvider>
                                                 <Tooltip>
                                                     <TooltipTrigger className="font-bold underline">
-                                                        Sepolia testnet block explorer
+                                                        Amoy testnet block explorer
                                                     </TooltipTrigger>
-                                                    <TooltipContent>
+                                                    <TooltipContent className=" bg-black outline-1 text-white">
                                                         <p>look around this page for the link 😜</p>
                                                     </TooltipContent>
                                                 </Tooltip>
@@ -289,31 +289,31 @@ export default function LandingPage() {
                                     </td>
                                 </tr>
                                 <tr className="flex gap-2 items-baseline">
-                                    <td>6.</td>
+                                    <td className="text-2xl pr-3">6.</td>
                                     <td>Find and head over to contract section. Click on Write</td>
                                 </tr>
                                 <tr className="flex gap-2 items-baseline">
-                                    <td>7.</td>
+                                    <td className="text-2xl pr-3">7.</td>
                                     <td>Connect your wallet (Use walletconnect if downloaded on mobile)</td>
                                 </tr>
                                 <tr className="flex gap-2 items-baseline">
-                                    <td>8.</td>
+                                    <td className="text-2xl pr-3">8.</td>
                                     <td>Fill the parameters of enrollMember() function, and send!</td>
                                 </tr>
                                 <tr className="flex gap-2 items-baseline">
-                                    <td>9.</td>
-                                    <td>The network will deduct some fees for transacting, but don=t worry, it=s free crypto.</td>
+                                    <td className="text-2xl pr-3">9.</td>
+                                    <td>The network will deduct some fees for transacting, but don{"'"}t worry, it{"'"}s free crypto.</td>
                                 </tr>
                                 <tr className="flex gap-2 items-baseline">
-                                    <td>10.</td>
+                                    <td className="text-2xl pr-3">10.</td>
                                     {/* <td>
                                     Once transaction is complete, head over to <button className="bg-[#212121] p-1 rounded-sm cursor-poi" onClick={}>enrolled</button> and check if your name is registered.
                                     </td> */}
                                     <td>
                                     Once transaction is complete, head over to{" "}
                                     <Link href="/enrolled">
-                                        <button className="bg-[#212121] p-1 rounded-sm cursor-pointer">
-                                        enrolled
+                                        <button className="bg-[#212121] py-1 px-2 mx-1 rounded-sm cursor-pointer text-[#c9c9c9]">
+                                        /enrolled
                                         </button>
                                     </Link>
                                     {" "}and check if your name is registered.
@@ -335,12 +335,12 @@ export default function LandingPage() {
                 <div className="flex flex-col items-baseline w-[80%] gap-4">
                     {/* Heading */}
                     <div className="flex gap-2 items-baseline">
-                        <h2 className="text-xl sm:text-3xl font-bold"> {"->"} Finally</h2>
+                        <h2 className="text-xl sm:text-3xl font-bold"> {""} Finally</h2>
                     </div>
 
                     {/* Points Section */}
                     <div className="sm:pl-8 flex flex-col gap-4">
-                        <p>Connect your wallet and check if you are registered. If you did all the steps correctly, you will receive a confetti party and be added to the community :{")"} </p>
+                        <p className="text-lg">Connect your wallet and check if you are registered. If you did all the steps correctly, you will receive a confetti party and be added to the community :{")"} </p>
                         {!isCheckingEnrollment ? (
                     <Button
                         variant="outline"
@@ -367,9 +367,6 @@ export default function LandingPage() {
                             </Button>
                         </div>
                     )}
-
-                    {/* Add the EnrolledMembersModal */}
-                    <EnrolledMembersModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
             
                     </div>
                     
