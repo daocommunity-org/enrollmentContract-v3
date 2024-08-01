@@ -1,13 +1,15 @@
 "use client"
 
-import Link from 'next/link'
-import Router from 'next/router'
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function Home() {
-  //auto redirect to /home
-  const handleRedirect = () => {
-    Router.push('/homepage')
-  }
+  const router = useRouter()
 
-  {window.location.href = "/homepage"}
+  useEffect(() => {
+    router.push('/homepage')
+  }, [router])
+
+  // Return null or a loading indicator
+  return null
 }
